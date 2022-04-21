@@ -21,12 +21,15 @@ namespace MathIntegralMethod.Classes
                 throw new ArgumentException("Incorrect number of steps");
             }
 
+            bool changeLimit = false;
+
             //перестановка пределов
             if (downLimit > upLimit)
             {
                 double tempLimit = downLimit;
                 downLimit = upLimit;
                 upLimit = tempLimit;
+                changeLimit = true;
             }
 
             Stopwatch stopwatch = new Stopwatch();
@@ -46,7 +49,14 @@ namespace MathIntegralMethod.Classes
             timeSpan = stopwatch.Elapsed;
             time = timeSpan.TotalMilliseconds;
 
-            return h * sum;
+            if (changeLimit)
+            {
+                return -h * sum;
+            }
+            else
+            {
+                return h * sum;
+            }
         }
 
         public double ParallelCalculate(int count, double downLimit, double upLimit, out double time, Func<double, double> integral)
@@ -57,12 +67,15 @@ namespace MathIntegralMethod.Classes
                 throw new ArgumentException("Incorrect number of steps");
             }
 
+            bool changeLimit = false;
+
             //перестановка пределов
             if (downLimit > upLimit)
             {
                 double tempLimit = downLimit;
                 downLimit = upLimit;
                 upLimit = tempLimit;
+                changeLimit = true;
             }
 
             Stopwatch stopwatch = new Stopwatch();
@@ -73,7 +86,7 @@ namespace MathIntegralMethod.Classes
             double h = (upLimit - downLimit) / count;
 
             stopwatch.Start();
-            Parallel.For(0, count+1,
+            Parallel.For(0, count + 1,
                 () => 0.0,
                 (i, state, localTotal) => localTotal + integral(downLimit + h * i - 0.5 * h),
                 localTotal => { lock (locker) sum += localTotal; });
@@ -82,7 +95,14 @@ namespace MathIntegralMethod.Classes
             timeSpan = stopwatch.Elapsed;
             time = timeSpan.TotalMilliseconds;
 
-            return h * sum;
+            if (changeLimit)
+            {
+                return -h * sum;
+            }
+            else
+            {
+                return h * sum;
+            }
         }
     }
 }

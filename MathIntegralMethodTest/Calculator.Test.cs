@@ -131,7 +131,7 @@ namespace MathIntegralMethodTest
             int steps = 100000;
             double time;
             double result;
-            double expected = 333333.333333;
+            double expected = -333333.333333;
             ICalculator calculator = new TrapezeMethod();
 
             //Acl
@@ -151,7 +151,7 @@ namespace MathIntegralMethodTest
             int steps = 100000;
             double time;
             double result;
-            double expected = 333333.333333;
+            double expected = -333333.333333;
             ICalculator calculator = new RectangleMethod();
 
             //Acl

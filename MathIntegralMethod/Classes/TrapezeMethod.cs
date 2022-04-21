@@ -21,12 +21,15 @@ namespace MathIntegralMethod.Classes
                 throw new ArgumentException("Incorrect number of steps");
             }
 
+            bool changeLimit = false;
+
             //перестановка пределов
             if (downLimit > upLimit)
             {
                 double tempLimit = downLimit;
                 downLimit = upLimit;
                 upLimit = tempLimit;
+                changeLimit = true;
             }
 
             Stopwatch stopwatch = new Stopwatch();
@@ -46,7 +49,14 @@ namespace MathIntegralMethod.Classes
             timeSpan = stopwatch.Elapsed;
             time = timeSpan.TotalMilliseconds;
 
-            return h * sum;
+            if (changeLimit)
+            {
+                return -h * sum;
+            }
+            else
+            {
+                return h * sum;
+            }
         }
 
         /// <summary>
@@ -60,12 +70,15 @@ namespace MathIntegralMethod.Classes
                 throw new ArgumentException("Incorrect number of steps");
             }
 
+            bool changeLimit = false;
+
             //перестановка пределов
             if (downLimit > upLimit)
             {
                 double tempLimit = downLimit;
                 downLimit = upLimit;
                 upLimit = tempLimit;
+                changeLimit = true;
             }
 
             Stopwatch stopwatch = new Stopwatch();
@@ -86,7 +99,15 @@ namespace MathIntegralMethod.Classes
             timeSpan = stopwatch.Elapsed;
             time = timeSpan.TotalMilliseconds;
 
-            return h * sum;
+            if(changeLimit)
+            {
+                return -h * sum;
+            }
+            else
+            {
+                return h * sum;
+            }
+            
         }
     }
 }
