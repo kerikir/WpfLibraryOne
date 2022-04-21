@@ -92,7 +92,7 @@ namespace MathIntegralMethod.Classes
             Parallel.For(0, count,
                 () => 0.0,
                 (i, state, localTotal) => localTotal + integral(downLimit + h * i),
-                localTotal => { lock (locker) sum += localTotal; });
+                localTotal => { lock (locker) { sum += localTotal; } });
             sum += (integral(upLimit) + integral(downLimit)) / 2;
             stopwatch.Stop();
 

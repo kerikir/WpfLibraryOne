@@ -34,7 +34,7 @@ namespace MathIntegralMethodTest
             double xStart = 0.0;
             double xEnd = 100.0;
             Func<double, double> func = x => x * x;
-            int steps = 100000;
+            int steps = 1000000;
             double time;
             double result;
             double expected = 333333.333333;
@@ -74,7 +74,7 @@ namespace MathIntegralMethodTest
             double xStart = 0.0;
             double xEnd = 100.0;
             Func<double, double> func = x => x * x;
-            int steps = 100000;
+            int steps = 1000000;
             double time;
             double result;
             double expected = 333333.333333;

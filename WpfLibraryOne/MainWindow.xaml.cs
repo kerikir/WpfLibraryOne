@@ -35,7 +35,6 @@ namespace WpfLibraryOne
         private void buttonCalculate_Click(object sender, RoutedEventArgs e)
         {
             DoCalculate();
-            GraphicDraw();
         }
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace WpfLibraryOne
             ICalculator calculator = GetCalculator();
 
             int totalSteps = 10000;
-            for (int i = 0; i < totalSteps; i++)
+            for (int i = 1; i < totalSteps; i++)
             {
                 double time = 0;
                 double result = calculator.Calculate(i, downLimit, upLimit, out time, x => (2 * x - Math.Log(2 * x) + 234));
@@ -99,6 +98,11 @@ namespace WpfLibraryOne
 
             plotModel.Series.Add(lineSeries);
             graphicOxyPlot.Model = plotModel;
+        }
+
+        private void buttonDrawGraphic_Click(object sender, RoutedEventArgs e)
+        {
+            GraphicDraw();
         }
     }
 }
