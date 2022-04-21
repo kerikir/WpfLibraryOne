@@ -66,9 +66,18 @@ namespace WpfLibraryOne
 
             ICalculator calculator = GetCalculator();
             double time;
+            double result;
 
             //вычисление результата
-            double result = calculator.Calculate(valueN, downLimit, upLimit, out time, x => (2 * x - Math.Log(2 * x) + 234));
+            if (checkboxParallel.IsChecked == true) 
+            {
+                result = calculator.ParallelCalculate(valueN, downLimit, upLimit, out time, x => (2 * x - Math.Log(2 * x) + 234));
+            }
+            else
+            {
+                result = calculator.Calculate(valueN, downLimit, upLimit, out time, x => (2 * x - Math.Log(2 * x) + 234));
+            }
+
             MessageBox.Show("Результат = " + result.ToString() + "\nВремя = " + time.ToString() + " мс");
         }
 
@@ -100,6 +109,9 @@ namespace WpfLibraryOne
             graphicOxyPlot.Model = plotModel;
         }
 
+        /// <summary>
+        /// Обработка кнопки - отрисовка графика
+        /// </summary>
         private void buttonDrawGraphic_Click(object sender, RoutedEventArgs e)
         {
             GraphicDraw();
