@@ -28,23 +28,24 @@ namespace MathIntegralMethodTest
         }
 
         [Fact]
-        public void ParallelCalculate_X_X_RectangleRight()
+        public void ParallelCalculateTrapeze_X_X_EqualCalculate()
         {
             //Arrange
             double xStart = 0.0;
             double xEnd = 100.0;
             Func<double, double> func = x => x * x;
-            int steps = 1000000;
+            int steps = 100000;
             double time;
             double result;
-            double expected = 333333.333333;
-            ICalculator calculator = new RectangleMethod();
+            double expected;
+            ICalculator calculator = new TrapezeMethod();
 
             //Acl
             result = calculator.ParallelCalculate(steps, xStart, xEnd, out time, func);
+            expected = calculator.Calculate(steps, xStart, xEnd, out time, func);
 
             //Assert
-            Assert.Equal(expected, result, 4);
+            Assert.Equal(expected, result, 6);
         }
 
         [Fact]
@@ -68,23 +69,24 @@ namespace MathIntegralMethodTest
         }
 
         [Fact]
-        public void ParallelCalculate_X_X_TrapezeRight()
+        public void ParallelCalculateRectangle_X_X_EqualCalculate()
         {
             //Arrange
             double xStart = 0.0;
             double xEnd = 100.0;
             Func<double, double> func = x => x * x;
-            int steps = 1000000;
+            int steps = 100000;
             double time;
             double result;
-            double expected = 333333.333333;
-            ICalculator calculator = new TrapezeMethod();
+            double expected;
+            ICalculator calculator = new RectangleMethod();
 
             //Acl
             result = calculator.ParallelCalculate(steps, xStart, xEnd, out time, func);
+            expected = calculator.Calculate(steps, xStart, xEnd, out time, func);
 
             //Assert
-            Assert.Equal(expected, result, 4);
+            Assert.Equal(expected, result, 6);
         }
 
         [Fact]
