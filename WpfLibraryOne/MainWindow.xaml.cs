@@ -71,11 +71,11 @@ namespace WpfLibraryOne
             //вычисление результата
             if (checkboxParallel.IsChecked == true) 
             {
-                result = calculator.ParallelCalculate(valueN, downLimit, upLimit, out time, x => (2 * x - Math.Log(2 * x) + 234));
+                result = calculator.ParallelCalculate(valueN, downLimit, upLimit, out time, x => 2 * x - Math.Log(2 * x) + 234);
             }
             else
             {
-                result = calculator.Calculate(valueN, downLimit, upLimit, out time, x => (2 * x - Math.Log(2 * x) + 234));
+                result = calculator.Calculate(valueN, downLimit, upLimit, out time, x => 2 * x - Math.Log(2 * x) + 234);
             }
 
             MessageBox.Show("Результат = " + result.ToString() + "\nВремя = " + time.ToString() + " мс");
@@ -100,8 +100,8 @@ namespace WpfLibraryOne
             int totalSteps = 10000;
             for (int i = 1; i < totalSteps; i++)
             {
-                double time = 0;
-                double result = calculator.Calculate(i, downLimit, upLimit, out time, x => (2 * x - Math.Log(2 * x) + 234));
+                double time = 0.0;
+                double result = calculator.Calculate(i, downLimit, upLimit, out time, x => 2 * x - Math.Log(2 * x) + 234);
                 lineSeries.Points.Add(new DataPoint(i, time));
             }
 
