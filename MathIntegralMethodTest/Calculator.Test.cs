@@ -33,7 +33,7 @@ namespace MathIntegralMethodTest
             //Arrange
             double xStart = 0.0;
             double xEnd = 100.0;
-            Func<double, double> func = x => x * x;
+            Func<double, double> func = x => x * x + 10.5;
             int steps = 100000;
             double time;
             double result;
@@ -74,7 +74,7 @@ namespace MathIntegralMethodTest
             //Arrange
             double xStart = 0.0;
             double xEnd = 100.0;
-            Func<double, double> func = x => x * x;
+            Func<double, double> func = x => x * x + 10.5;
             int steps = 100000;
             double time;
             double result;

@@ -86,10 +86,10 @@ namespace MathIntegralMethod.Classes
             double h = (upLimit - downLimit) / count;
 
             stopwatch.Start();
-            Parallel.For(0, count + 1,
+            Parallel.For(1, count + 1,
                 () => 0.0,
                 (i, state, localTotal) => localTotal + integral(downLimit + h * i - 0.5 * h),
-                localTotal => { lock (locker) sum += localTotal; });
+                localTotal => { lock (locker) { sum += localTotal; } });
             stopwatch.Stop();
 
             timeSpan = stopwatch.Elapsed;
